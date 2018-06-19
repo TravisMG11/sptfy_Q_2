@@ -11,7 +11,7 @@ def decode_string(str)
       end
       i = j + 1
     else
-      str << s[i]
+      decoded_str << str[i]
       i += 1
     end
   end
@@ -27,13 +27,14 @@ def find_number_of_reps(str, i)
   reps_str = ""
   end_idx = i + 1
   (i...str.length).each do |x|
-  end_idx = x
-  if integer_check(str[x])
-    reps_str << str[j]
-    end_idx += 1
-  else
-    end_idx += 1
-    break
+    end_idx = x
+    if integer_check(str[x])
+      reps_str << str[x]
+      end_idx += 1
+    else
+      end_idx += 1
+      break
+    end
   end
   return reps_str.to_i, end_idx
 end
@@ -41,12 +42,13 @@ end
 def where_does_it_end?(str, i)
   idx = 0
   (i...str.length).each do |idx2|
-    return x if str[x] == "]" && idx == 0
-  idx -= 1 if s[x] == "["
-  idx +=1 if s[x] == "]"
+    return idx2 if str[idx2] == "]" && idx == 0
+    idx -= 1 if str[idx2] == "["
+    idx +=1 if str[idx2] == "]"
+  end
 end
 
 
-decode_string("4[ab]")
+p decode_string("4[ab]")
 
-decode_string("2[b3[a]]")
+p decode_string("2[b3[a]]")
